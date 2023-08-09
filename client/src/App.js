@@ -8,15 +8,18 @@ import axios from 'axios';
 
 function App() {
 
+    // useState atualiza o estado de um elemento em tempo real
+    // essa variável é responsável por transitar as informações da lista para todos os componentes da aplicação
     const [ lista, alteraLista ] = useState( [] )
 
+    // Realiza a consulta GET na API
     function buscaTodos(){
-        axios.get("http://localhost:3003/api/buscaTodos")
-        .then( resposta => {
-            alteraLista(resposta.data)
+        axios.get("http://localhost:3003/api/buscaTodos") // O paco AXIOS facilita o processo requisições HTTP
+        .then( resposta => { // .then recebe o sucesso da requisição
+            alteraLista(resposta.data) // altera a lista, adicionando os dados que vieram do banco na resposta
         })
-        .catch( resposta => {
-            console.log(resposta)
+        .catch( resposta => { // .catch recebe qualquer erro e problemas na requisição
+            console.log(resposta) // podemos visualizar o erro no console caso aconteça
             console.log("Erro ao buscar dados")
         })
     }
